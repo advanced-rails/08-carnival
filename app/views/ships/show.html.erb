@@ -1,10 +1,14 @@
 <h1 class="display-4 p-2">Ship <%= @ship.name %></h1>
 
-<%= link_to new_ship_cabin_path(@ship), class: 'btn btn-outline-primary' do %>
-  <i class="fa fa-plus-circle"></i> Add Cabin</a>
-<% end %>
+<div>
+  <%= link_to new_ship_cabin_path(@ship), class: 'btn btn-outline-primary m-2' do %>
+    <i class="fa fa-plus-circle"></i> Add Cabin</a>
+  <% end %>
+</div>
 
-<%= image_tag(@ship.photo, width: 250, height: 250, class: 'img-thumbnail') if @ship.photo %>
+<div class="m-2">
+  <%= image_tag(@ship.photo, width: 250, height: 250, class: 'img-thumbnail') if @ship.photo %>
+</div>
 
 <table class="table table-striped">
   <thead class="thead-inverse">
