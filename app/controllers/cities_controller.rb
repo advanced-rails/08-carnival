@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+  before_action :auth_admin
+
   def index
     @cities = City.all
   end
