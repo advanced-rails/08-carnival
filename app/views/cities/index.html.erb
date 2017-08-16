@@ -1,26 +1,32 @@
-Cities
+<h1 class="display-4 p-2">Cities</h1>
 
-<div>
-  <%= link_to 'New City', new_city_path %>
-</div>
+<a href="/cities/new" class="btn btn-outline-primary m-2">
+  <i class="fa fa-plus-circle"></i> New City
+</a>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-inverse">
     <tr>
+      <th></th>
       <th>Id</th>
       <th>Name</th>
       <th>Country</th>
       <th>Photo</th>
-    </tr>
+      </tr>
   </thead>
   <tbody>
     <% @cities.each do |c| %>
       <tr>
+        <td>
+          <%= link_to city_path(c), method: :delete do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+        </td>
         <td><%= c.id %></td>
         <td><%= c.name %></td>
         <td><%= c.country %></td>
-        <td><%= c.photo %></td>
-      </tr>
-    <% end %>
+        <td><%= image_tag(c.photo, width: 75, height: 75, class: 'img-thumbnail') if c.photo %></td>
+        </tr>
+      <% end %>
   </tbody>
 </table>
