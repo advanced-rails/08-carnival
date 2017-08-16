@@ -1,0 +1,30 @@
+<h1 class="display-4 p-2">Ships</h1>
+
+<a href="/ships/new" class="btn btn-outline-primary m-2">
+  <i class="fa fa-plus-circle"></i> New Ship
+</a>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Photo</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @ships.each do |s| %>
+      <tr>
+        <td>
+          <%= link_to ship_path(s), method: :delete do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+        </td>
+        <td><%= link_to s.id, ship_path(s) %></td>
+        <td><%= s.name %></td>
+        <td><%= image_tag(s.photo, width: 75, height: 75, class: 'img-thumbnail') if s.photo %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

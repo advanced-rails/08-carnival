@@ -15,14 +15,17 @@
         </li>
       <% elsif @is_admin %>
         <li class="nav-item">
-          <a class="nav-link" href="/cities"><i class="fa fa-truck"></i> Cities</a>
+          <a class="nav-link" href="/cities"><i class="fa fa-bus"></i> Cities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ships"><i class="fa fa-ship"></i> Ships</a>
         </li>
       <% elsif @is_user %>
       <% end %>
 
       <% if @is_logged_in %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/edit"><i class="fa fa-grav"></i> Profile</a>
+          <a class="nav-link" href="/users/edit"><i class="fa fa-id-card"></i> Profile</a>
         </li>
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
