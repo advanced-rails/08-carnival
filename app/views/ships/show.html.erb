@@ -1,0 +1,28 @@
+<h1 class="display-4 p-2">Ship <%= @ship.name %></h1>
+
+<%= link_to new_ship_cabin_path(@ship), class: 'btn btn-outline-primary' do %>
+  <i class="fa fa-plus-circle"></i> Add Cabin</a>
+<% end %>
+
+<%= image_tag(@ship.photo, width: 250, height: 250, class: 'img-thumbnail') if @ship.photo %>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Id</th>
+      <th>Room</th>
+      <th>Level</th>
+      <th>Available?</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @ship.cabins.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= c.room %></td>
+        <td><%= c.level %></td>
+        <td><%= c.is_available %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

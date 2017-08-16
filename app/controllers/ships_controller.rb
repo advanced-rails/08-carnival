@@ -23,4 +23,8 @@ class ShipsController < ApplicationController
     ship.destroy
     redirect_to ships_path
   end
+
+  def show
+    @ship = Ship.find(params[:id])
+  end
 end
