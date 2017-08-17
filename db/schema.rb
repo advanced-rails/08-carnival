@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816215801) do
+ActiveRecord::Schema.define(version: 20170817165359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 20170816215801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "country"], name: "index_cities_on_name_and_country", unique: true
+  end
+
+  create_table "cities_cruises", id: false, force: :cascade do |t|
+    t.bigint "city_id", null: false
+    t.bigint "cruise_id", null: false
+    t.index ["city_id"], name: "index_cities_cruises_on_city_id"
+    t.index ["cruise_id"], name: "index_cities_cruises_on_cruise_id"
+  end
+
+  create_table "cruises", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "duration", default: 0
+    t.decimal "base_cost", default: "0.0"
+    t.date "dates", default: [], array: true
+    t.bigint "ship_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_cruises_on_name", unique: true
+    t.index ["ship_id"], name: "index_cruises_on_ship_id"
   end
 
   create_table "ships", force: :cascade do |t|
@@ -62,4 +81,7 @@ ActiveRecord::Schema.define(version: 20170816215801) do
   end
 
   add_foreign_key "cabins", "ships"
+  add_foreign_key "cities_cruises", "cities"
+  add_foreign_key "cities_cruises", "cruises"
+  add_foreign_key "cruises", "ships"
 end

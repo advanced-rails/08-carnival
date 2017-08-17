@@ -11,6 +11,7 @@
 #
 
 class City < ApplicationRecord
+  has_and_belongs_to_many :cruises
   validates :name, :country, presence: true
   validates :name, uniqueness: {scope: [:country]}
 end
