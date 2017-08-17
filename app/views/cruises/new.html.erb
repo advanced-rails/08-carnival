@@ -1,0 +1,40 @@
+<h1 class="display-4 p-2">Add Cruise</h1>
+
+<div class="row">
+  <div class="col-4">
+    <%= form_with(model: @cruise, local: true) do |form| %>
+
+      <%= render 'errors', object: @cruise %>
+
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :cruise_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :duration %>
+        <%= form.text_field :duration, id: :cruise_duration, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :base_cost %>
+        <%= form.text_field :base_cost, id: :cruise_base_cost, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :dates %>
+        <%= form.text_field :dates, id: :cruise_dates, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :ship_id %>
+        <%= form.collection_select(:ship_id, @ships, :id, :name, {}, {class: 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit class: 'btn btn-outline-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-8"></div>
+</div>

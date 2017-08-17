@@ -1,0 +1,32 @@
+<h1 class="display-4 p-2">Cruises</h1>
+
+<a href="/cruises/new" class="btn btn-outline-primary m-2">
+  <i class="fa fa-plus-circle"></i> New Cruise
+</a>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Duration</th>
+      <th>Cost</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @cruises.each do |c| %>
+      <tr>
+        <td>
+          <%= link_to cruise_path(c), method: :delete do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+        </td>
+        <td><%= link_to c.id, c %></td>
+        <td><%= c.name %></td>
+        <td><%= c.duration %></td>
+        <td><%= number_to_currency c.base_cost %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
