@@ -1,0 +1,90 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: boat
+spec:
+  replicas: 7
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      dog: cat
+      meow: woof
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        dog: cat
+        meow: woof
+    spec:
+      containers:
+      - name: sweetpotato
+        image: chyld/boat:v1
+        ports:
+        - containerPort: 3333
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      dog: cat1
+      meow: woof1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        dog: cat1
+        meow: woof1
+    spec:
+      containers:
+      - name: carrot
+        image: postgres
+        ports:
+        - containerPort: 5432
+        env:
+            - name: POSTGRES_PASSWORD
+              value: awesome
+            - name: POSTGRES_DB
+              value: super
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xposure
+  labels:
+    xxx: yyy
+    aaa: bbb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3333
+  selector:
+    dog: cat
+    meow: woof
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: talk
+  labels:
+    xxx: yyy1
+    aaa: bbb1
+spec:
+  ports:
+  - port: 5432
+  selector:
+    dog: cat1
+    meow: woof1

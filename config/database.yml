@@ -15,6 +15,10 @@
 # gem 'pg'
 #
 default: &default
+  host: talk
+  port: 5432
+  username: postgres
+  password: awesome
   template: template0
   adapter: postgresql
   encoding: unicode

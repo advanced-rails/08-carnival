@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170817222059) do
 
   create_table "cabins", force: :cascade do |t|
     t.string "room", null: false
-    t.string "level", null: false
+    t.integer "level", null: false
     t.boolean "is_available", default: true
     t.bigint "ship_id", null: false
     t.datetime "created_at", null: false
