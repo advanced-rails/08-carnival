@@ -1,0 +1,30 @@
+<h1 class="display-4 p-2">Reservations</h1>
+
+<a href="/reservations/new" class="btn btn-outline-primary m-2">
+  <i class="fa fa-plus-circle"></i> New Reservation
+</a>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Room</th>
+      <th>Level</th>
+      <th>Cost</th>
+      <th>Cruise</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |r| %>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= r.date %></td>
+        <td><%= r.room %></td>
+        <td><%= r.level %></td>
+        <td><%= number_to_currency r.cost %></td>
+        <td><%= r.cruise.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

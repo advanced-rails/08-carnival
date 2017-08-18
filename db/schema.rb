@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817165359) do
+ActiveRecord::Schema.define(version: 20170817222059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20170817165359) do
     t.index ["ship_id"], name: "index_cruises_on_ship_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.date "date", null: false
+    t.string "room", null: false
+    t.integer "level", null: false
+    t.decimal "cost", null: false
+    t.bigint "user_id", null: false
+    t.bigint "cruise_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cruise_id"], name: "index_reservations_on_cruise_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "ships", force: :cascade do |t|
     t.string "name", null: false
     t.string "photo"
@@ -84,4 +97,6 @@ ActiveRecord::Schema.define(version: 20170817165359) do
   add_foreign_key "cities_cruises", "cities"
   add_foreign_key "cities_cruises", "cruises"
   add_foreign_key "cruises", "ships"
+  add_foreign_key "reservations", "cruises"
+  add_foreign_key "reservations", "users"
 end

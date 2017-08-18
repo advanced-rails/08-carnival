@@ -24,6 +24,9 @@
           <a class="nav-link" href="/cruises"><i class="fa fa-anchor"></i> Cruises</a>
         </li>
       <% elsif @is_user %>
+        <li class="nav-item">
+          <a class="nav-link" href="/reservations"><i class="fa fa-gift"></i> Reservations</a>
+        </li>
       <% end %>
 
       <% if @is_logged_in %>
